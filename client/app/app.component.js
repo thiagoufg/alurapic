@@ -9,15 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(http) {
+        var _this = this;
+        this.fotos = [];
+        http.get('v1/fotos')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (fotos) { return _this.fotos = fotos; }, function (erro) { return console.log(erro); });
     }
     AppComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'app',
-            templateUrl: './app/app.component.html'
+            templateUrl: './app.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], AppComponent);
     return AppComponent;
 }());
