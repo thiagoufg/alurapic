@@ -9,18 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
+var http_1 = require('@angular/http');
+var ListagemComponent = (function () {
+    function ListagemComponent(http) {
+        var _this = this;
+        this.fotos = [];
+        http.get('v1/fotos')
+            .map(function (res) { return res.json(); })
+            .subscribe(function (fotos) { return _this.fotos = fotos; }, function (erro) { return console.log(erro); });
     }
-    AppComponent = __decorate([
+    ListagemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app',
-            templateUrl: './app.component.html'
+            selector: 'listagem',
+            templateUrl: './listagem.component.html'
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [http_1.Http])
+    ], ListagemComponent);
+    return ListagemComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.ListagemComponent = ListagemComponent;
+//# sourceMappingURL=listagem.component.js.map
