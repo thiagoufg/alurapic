@@ -9,14 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http'); // importou a classe Header também
 var foto_component_1 = require('../foto/foto.component');
 var CadastroComponent = (function () {
-    function CadastroComponent() {
+    function CadastroComponent(http) {
         this.foto = new foto_component_1.FotoComponent();
+        this.http = http;
     }
-    CadastroComponent.prototype.cadastrar = function (event) {
-        event.preventDefault();
+    CadastroComponent.prototype.cadastrar = function () {
+        var _this = this;
         console.log(this.foto);
+        // cria uma instância de Headers
+        var headers = new http_1.Headers();
+        // Adiciona o tipo de conteúdo application/json 
+        headers.append('Content-Type', 'application/json');
+        this.http.post('v1/fotos', JSON.stringify(this.foto), { headers: headers })
+            .subscribe(function () {
+            _this.foto = new foto_component_1.FotoComponent();
+            console.log('Foto salva com sucesso');
+        }, function (erro) { return console.log(erro); });
     };
     CadastroComponent = __decorate([
         core_1.Component({
@@ -24,7 +35,7 @@ var CadastroComponent = (function () {
             selector: 'cadastro',
             templateUrl: './cadastro.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], CadastroComponent);
     return CadastroComponent;
 }());
