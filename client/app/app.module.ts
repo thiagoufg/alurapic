@@ -9,9 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FotoModule } from './foto/foto.module';
 import { PainelModule } from './painel/painel.module';
 import { routing } from './app.routes';
-
-// Importa o módulo. Não esqueça de adicioná-lo no array de imports!
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports:      [
@@ -20,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     PainelModule,
     FotoModule,
     routing,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [ AppComponent, ListagemComponent, CadastroComponent ],
   bootstrap:    [ AppComponent ]

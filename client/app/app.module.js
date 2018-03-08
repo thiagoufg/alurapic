@@ -18,7 +18,6 @@ var http_1 = require('@angular/http');
 var foto_module_1 = require('./foto/foto.module');
 var painel_module_1 = require('./painel/painel.module');
 var app_routes_1 = require('./app.routes');
-// Importa o módulo. Não esqueça de adicioná-lo no array de imports!
 var forms_1 = require('@angular/forms');
 var AppModule = (function () {
     function AppModule() {
@@ -31,7 +30,8 @@ var AppModule = (function () {
                 painel_module_1.PainelModule,
                 foto_module_1.FotoModule,
                 app_routes_1.routing,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                forms_1.ReactiveFormsModule
             ],
             declarations: [app_component_1.AppComponent, listagem_component_1.ListagemComponent, cadastro_component_1.CadastroComponent],
             bootstrap: [app_component_1.AppComponent]
