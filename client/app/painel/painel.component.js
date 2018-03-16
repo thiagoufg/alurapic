@@ -25,7 +25,9 @@ var PainelComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'painel',
-            templateUrl: './painel.component.html'
+            templateUrl: './painel.component.html',
+            styleUrls: ['./painel.component.css'],
+            encapsulation: core_1.ViewEncapsulation.Emulated
         }), 
         __metadata('design:paramtypes', [])
     ], PainelComponent);
