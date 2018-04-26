@@ -1,6 +1,6 @@
 import { Http, Headers, Response } from '@angular/http';
 import { FotoComponent } from './foto.component';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class FotoService {
     headers: Headers;
     url: string = 'v1/fotos';
 
-    constructor(http: Http) { 
+    constructor(http: Http) {
 
         this.http = http;
         this.headers = new Headers();
@@ -23,7 +23,12 @@ export class FotoService {
     }
 
     cadastra(foto: FotoComponent): Observable<Response> {
-        return this.http.post(this.url, JSON.stringify(foto), 
-                { headers: this.headers }); 
+        return this.http.post(this.url, JSON.stringify(foto),
+            { headers: this.headers });
+    }
+
+    remove(foto: FotoComponent): Observable<Response> {
+
+        return this.http.delete(this.url + '/' + foto._id);
     }
 }
