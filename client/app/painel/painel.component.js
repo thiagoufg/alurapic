@@ -10,12 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var PainelComponent = (function () {
-    function PainelComponent() {
+    function PainelComponent(elemento) {
+        this.elemento = elemento;
     }
     PainelComponent.prototype.ngOnInit = function () {
         this.titulo = this.titulo.length > 7
             ? this.titulo.substr(0, 7) + "..."
             : this.titulo;
+    };
+    PainelComponent.prototype.fadeOut = function (cb) {
+        // Erro de compilação! Não reconhece o $ do jQuery!
+        // Resolver: 
+        // npm run typings search jquery
+        // node ./node_modules/typings/dist/bin install dt~jquery --global --save
+        // A pasta client/typings será criada para conter a declaração da api do jquery.
+        // Rodar `typing install` sempre ao final de `npm start` para baixar as declarações
+        // Sugestão: (criar script `postinstall` no package.json)
+        $(this.elemento.nativeElement).fadeOut(cb);
     };
     __decorate([
         core_1.Input(), 
@@ -29,7 +40,7 @@ var PainelComponent = (function () {
             styleUrls: ['./painel.component.css'],
             encapsulation: core_1.ViewEncapsulation.Emulated
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ElementRef])
     ], PainelComponent);
     return PainelComponent;
 }());
