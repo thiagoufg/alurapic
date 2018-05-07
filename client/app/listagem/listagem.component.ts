@@ -26,25 +26,21 @@ export class ListagemComponent {
 
     }
 
-    remove(foto,eventoOpcional, painel: PainelComponent) {
-        if(eventoOpcional)
-            alert(eventoOpcional);
-        if (confirm('Tem certeza')) {
-            this.service.remove(foto)
-                .subscribe(
-                    fotos => {
-                        painel.fadeOut(() => {
-                            let novasFotos = this.fotos.slice(0);
-                            let indice = novasFotos.indexOf(foto);
-                            novasFotos.splice(indice, 1);
-                            this.fotos = novasFotos;
-                            this.mensagem = 'Foto removida com sucesso';
-                        });
-                    },
-                    erro => {
-                        console.log(erro);
-                        this.mensagem = 'Não foi possível remover a foto';
+    remove(foto, eventoOpcional, painel: PainelComponent) {
+        this.service.remove(foto)
+            .subscribe(
+                fotos => {
+                    painel.fadeOut(() => {
+                        let novasFotos = this.fotos.slice(0);
+                        let indice = novasFotos.indexOf(foto);
+                        novasFotos.splice(indice, 1);
+                        this.fotos = novasFotos;
+                        this.mensagem = 'Foto removida com sucesso';
                     });
-        }
+                },
+                erro => {
+                    console.log(erro);
+                    this.mensagem = 'Não foi possível remover a foto';
+                });
     }
 }

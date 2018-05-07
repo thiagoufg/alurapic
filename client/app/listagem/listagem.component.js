@@ -24,23 +24,19 @@ var ListagemComponent = (function () {
     }
     ListagemComponent.prototype.remove = function (foto, eventoOpcional, painel) {
         var _this = this;
-        if (eventoOpcional)
-            alert(eventoOpcional);
-        if (confirm('Tem certeza')) {
-            this.service.remove(foto)
-                .subscribe(function (fotos) {
-                painel.fadeOut(function () {
-                    var novasFotos = _this.fotos.slice(0);
-                    var indice = novasFotos.indexOf(foto);
-                    novasFotos.splice(indice, 1);
-                    _this.fotos = novasFotos;
-                    _this.mensagem = 'Foto removida com sucesso';
-                });
-            }, function (erro) {
-                console.log(erro);
-                _this.mensagem = 'Não foi possível remover a foto';
+        this.service.remove(foto)
+            .subscribe(function (fotos) {
+            painel.fadeOut(function () {
+                var novasFotos = _this.fotos.slice(0);
+                var indice = novasFotos.indexOf(foto);
+                novasFotos.splice(indice, 1);
+                _this.fotos = novasFotos;
+                _this.mensagem = 'Foto removida com sucesso';
             });
-        }
+        }, function (erro) {
+            console.log(erro);
+            _this.mensagem = 'Não foi possível remover a foto';
+        });
     };
     ListagemComponent = __decorate([
         core_1.Component({
