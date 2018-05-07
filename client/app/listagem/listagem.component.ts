@@ -25,7 +25,9 @@ export class ListagemComponent {
 
     }
 
-    remove(foto) {
+    remove(foto,eventoOpcional) {
+        if(eventoOpcional)
+            alert(eventoOpcional);
         if (confirm('Tem certeza')) {
             this.service.remove(foto)
                 .subscribe(

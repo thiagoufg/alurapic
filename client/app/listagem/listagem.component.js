@@ -22,8 +22,10 @@ var ListagemComponent = (function () {
             _this.fotos = fotos;
         }, function (erro) { return console.log(erro); });
     }
-    ListagemComponent.prototype.remove = function (foto) {
+    ListagemComponent.prototype.remove = function (foto, eventoOpcional) {
         var _this = this;
+        if (eventoOpcional)
+            alert(eventoOpcional);
         if (confirm('Tem certeza')) {
             this.service.remove(foto)
                 .subscribe(function (fotos) {

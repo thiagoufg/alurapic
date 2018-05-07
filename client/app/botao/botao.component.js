@@ -21,11 +21,11 @@ var BotaoComponent = (function () {
     BotaoComponent.prototype.executaAcao = function () {
         if (this.confirmacao) {
             if (confirm('Tem certeza?')) {
-                this.acao.emit(null);
+                this.acao.emit("ok");
             }
             return;
         }
-        this.acao.emit(null);
+        this.acao.emit("ok");
     };
     __decorate([
         core_1.Input(), 
